@@ -1,0 +1,40 @@
+project:
+  type: website
+  title: "VR's Quantfolio"
+  output-dir: docs
+
+website:
+  title: "VR Quantfolio"
+  description: "Interactive analysis w/ quantitative finance with Python"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: tutorials/arima_fundamentals.ipynb
+        text: ARIMA Tutorial
+    right:
+      - icon: github
+        href: https://github.com/vedanthr5/vr-quantfolio-intro
+      - icon: rocket
+        href: https://vr-quantfolio.streamlit.app
+        text: Live App
+
+  page-navigation: true
+  back-to-top-navigation: true
+
+format:
+  html:
+    theme:
+      dark: darkly
+      light: flatly
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools: true
+    code-copy: true
+    highlight-style: github
+
+execute:
+  freeze: auto
+  echo: true
+  warning: false

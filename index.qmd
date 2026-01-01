@@ -1,0 +1,57 @@
+---
+title: "VR Quantfolio"
+subtitle: "Interactive Quantitative Finance Tutorials"
+---
+
+## Welcome! 👋
+
+This site hosts interactive tutorials on quantitative finance with Python.
+
+### 📚 Available Tutorials
+
+#### [ARIMA Time Series Forecasting](tutorials/arima_fundamentals.html)
+Learn how to forecast stock prices using the ARIMA model:
+- Stationarity testing with ADF
+- Differencing transformations
+- Walk-forward validation
+- Cumulative sum reversal
+- Error metrics (MSE, SMAPE)
+
+### 🚀 Interactive App
+
+Want to try these concepts hands-on? Check out our **Streamlit App**:
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://vr-quantfolio.streamlit.app)
+
+Features include:
+- Stock data fetching and visualization
+- AutoML model training with PyCaret
+- ARIMA and NeuralProphet forecasting
+- Portfolio optimization
+
+### 📊 What You'll Learn
+
+| Topic | Description |
+|-------|-------------|
+| **Time Series Analysis** | Stationarity, differencing, autocorrelation |
+| **ARIMA Modeling** | AR, I, and MA components explained |
+| **Machine Learning** | AutoML for stock prediction |
+| **Portfolio Theory** | Mean-variance optimization, efficient frontier |
+
+### 🛠️ Technologies Used
+
+- **Python**: pandas, numpy, scipy
+- **Visualization**: Plotly, matplotlib
+- **ML/AI**: PyCaret, statsmodels, NeuralProphet
+- **Portfolio**: Riskfolio-Lib
+- **Web**: Streamlit
+
+### 📖 Source Code
+
+All code is available on GitHub:
+
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/vedanthr5/vr-quantfolio-intro)
+
+---
+
+*Created by Vedanth Ramanathan*

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VR's Quantfolio</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #0e1117 0%,
+          #1a1f2e 50%,
+          #0e1117 100%
+        );
+        min-height: 100vh;
+        color: #fafafa;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      header {
+        text-align: center;
+        padding: 4rem 2rem;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+      }
+
+      .subtitle {
+        font-size: 1.5rem;
+        color: #9ca3af;
+        margin-bottom: 2rem;
+      }
+
+      .badges {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        background: rgba(102, 126, 234, 0.2);
+        border: 1px solid rgba(102, 126, 234, 0.3);
+        border-radius: 20px;
+        color: #667eea;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .badge:hover {
+        background: rgba(102, 126, 234, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .card {
+        background: rgba(26, 31, 46, 0.8);
+        border: 1px solid rgba(102, 126, 234, 0.2);
+        border-radius: 16px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(102, 126, 234, 0.5);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .card-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: #fafafa;
+      }
+
+      .card p {
+        color: #9ca3af;
+        line-height: 1.6;
+      }
+
+      .cta-section {
+        text-align: center;
+        padding: 3rem;
+        background: rgba(102, 126, 234, 0.1);
+        border-radius: 16px;
+        margin-bottom: 3rem;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        margin: 0.5rem;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+      }
+
+      .cta-button.secondary {
+        background: transparent;
+        border: 2px solid #667eea;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem;
+        color: #6b7280;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      footer a {
+        color: #667eea;
+        text-decoration: none;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.5rem;
+        }
+        .subtitle {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🚀 VR Quantfolio</h1>
+        <p class="subtitle">
+          Interactive Quantitative Finance Tutorials with Python
+        </p>
+
+        <div class="badges">
+          <a href="https://vr-quantfolio.streamlit.app" class="badge">
+            ⚡ Live Streamlit App
+          </a>
+          <a
+            href="https://github.com/vedanthr5/vr-quantfolio-intro"
+            class="badge"
+          >
+            💻 GitHub Repository
+          </a>
+          <a href="tutorials/arima_fundamentals.html" class="badge">
+            📚 ARIMA Tutorial
+          </a>
+        </div>
+      </header>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">📈</div>
+          <h3>Stock Data Analysis</h3>
+          <p>
+            Fetch and visualize historical stock data with interactive Plotly
+            charts. Explore price trends, moving averages, and volume patterns.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🤖</div>
+          <h3>AutoML Prediction</h3>
+          <p>
+            Train machine learning models automatically using PyCaret. Compare
+            algorithms, tune hyperparameters, and export your best models.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🔮</div>
+          <h3>Time Series Forecasting</h3>
+          <p>
+            Implement ARIMA and NeuralProphet models for stock price prediction.
+            Understand stationarity, differencing, and walk-forward validation.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">💼</div>
+          <h3>Portfolio Optimization</h3>
+          <p>
+            Build efficient portfolios using mean-variance optimization.
+            Visualize the efficient frontier and analyze risk-adjusted returns.
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h2 style="margin-bottom: 1rem">Ready to Explore?</h2>
+        <p style="color: #9ca3af; margin-bottom: 2rem">
+          Try the interactive Streamlit app or dive into the tutorials
+        </p>
+        <a href="https://vr-quantfolio.streamlit.app" class="cta-button">
+          🚀 Launch App
+        </a>
+        <a
+          href="tutorials/arima_fundamentals.html"
+          class="cta-button secondary"
+        >
+          📖 Read Tutorial
+        </a>
+      </div>
+
+      <footer>
+        <p>
+          Created by <a href="https://github.com/vedanthr5">Vedanth R</a> |
+          <a href="https://github.com/vedanthr5/vr-quantfolio-intro"
+            >View on GitHub</a
+          >
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
