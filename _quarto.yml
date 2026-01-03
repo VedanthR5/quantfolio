@@ -16,7 +16,7 @@ website:
       - icon: github
         href: https://github.com/vedanthr5/vr-quantfolio-intro
       - icon: rocket
-        href: https://vr-quantfolio.streamlit.app
+        href: https://vrquantfolio.streamlit.app
         text: Live App
 
   page-navigation: true

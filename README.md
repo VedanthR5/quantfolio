@@ -2,7 +2,7 @@
 
 > Interactive Quantitative Finance Toolkit with Python
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://vr-quantfolio.streamlit.app)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://vrquantfolio.streamlit.app)
 [![GitHub Pages](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://vedanthr5.github.io/vr-quantfolio-intro)
 
 ## Overview
