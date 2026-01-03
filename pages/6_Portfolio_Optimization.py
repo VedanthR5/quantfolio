@@ -50,6 +50,19 @@ with col1:
         default=["AAPL", "GOOGL", "MSFT", "AMZN"],
         help="Select at least 2 stocks for portfolio optimization"
     )
+    
+    # Custom tickers input
+    custom_tickers = st.text_input(
+        "Or add custom tickers (comma-separated)",
+        placeholder="e.g., AMD, NFLX, TSLA",
+        help="Enter any valid Yahoo Finance ticker symbols"
+    )
+    if custom_tickers:
+        custom_list = [t.strip().upper() for t in custom_tickers.split(",") if t.strip()]
+        # Add custom tickers to selection (avoid duplicates)
+        for t in custom_list:
+            if t not in selected_tickers:
+                selected_tickers.append(t)
 
 with col2:
     preset = st.selectbox(

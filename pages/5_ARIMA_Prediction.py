@@ -43,6 +43,15 @@ with col1:
         all_tickers.extend(t)
     
     ticker = st.selectbox("Stock Ticker", options=sorted(set(all_tickers)), index=0)
+    
+    # Custom ticker input
+    custom_ticker = st.text_input(
+        "Or enter custom ticker",
+        placeholder="e.g., AMD, NFLX",
+        help="Enter any valid Yahoo Finance ticker symbol"
+    )
+    if custom_ticker:
+        ticker = custom_ticker.upper().strip()
 
 with col2:
     start_date = st.date_input(
