@@ -11,7 +11,7 @@ from datetime import datetime
 import sys
 sys.path.append('..')
 
-from utils.styles import apply_custom_css
+from utils.styles import apply_custom_css, add_footer
 
 apply_custom_css()
 
@@ -204,3 +204,5 @@ st.markdown("""
 - ARIMA Prediction for time series forecasting
 - Portfolio Optimization to build optimal portfolios
 """)
+
+add_footer()

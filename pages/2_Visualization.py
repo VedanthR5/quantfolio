@@ -13,7 +13,7 @@ from plotly.subplots import make_subplots
 import sys
 sys.path.append('..')
 
-from utils.styles import apply_custom_css
+from utils.styles import apply_custom_css, add_footer
 
 apply_custom_css()
 
@@ -325,3 +325,5 @@ elif viz_type == "Rolling Statistics":
 
 st.markdown("---")
 st.markdown("**Next step:** Head to AutoML Training to train prediction models.")
+
+add_footer()

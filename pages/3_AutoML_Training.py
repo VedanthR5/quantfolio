@@ -10,7 +10,7 @@ import numpy as np
 import sys
 sys.path.append('..')
 
-from utils.styles import apply_custom_css
+from utils.styles import apply_custom_css, add_footer
 
 apply_custom_css()
 
@@ -239,3 +239,5 @@ if 'automl_best_model' in st.session_state:
     st.markdown("**Next step:** Head to Export Model to save your trained model.")
 else:
     st.markdown("Train a model to proceed to the export step.")
+
+add_footer()

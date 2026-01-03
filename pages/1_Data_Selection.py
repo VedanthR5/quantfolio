@@ -10,7 +10,7 @@ from datetime import datetime, timedelta, date
 import sys
 sys.path.append('..')
 
-from utils.styles import apply_custom_css
+from utils.styles import apply_custom_css, add_footer
 from utils.data_fetcher import (
     fetch_stock_data, 
     get_available_tickers, 
@@ -171,3 +171,5 @@ if 'automl_data' in st.session_state and st.session_state['automl_data'] is not 
             f"{st.session_state.get('automl_start_date', '')} to {st.session_state.get('automl_end_date', '')}")
     
     st.markdown("**Next step:** Head to Visualization to explore the data.")
+
+add_footer()

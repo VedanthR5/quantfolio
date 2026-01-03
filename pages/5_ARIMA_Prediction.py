@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 import sys
 sys.path.append('..')
 
-from utils.styles import apply_custom_css
+from utils.styles import apply_custom_css, add_footer
 from utils.data_fetcher import fetch_stock_data, get_available_tickers
 
 apply_custom_css()
@@ -326,3 +326,5 @@ else:  # NeuralProphet
 
 st.markdown("---")
 st.markdown("**Next step:** Head to Portfolio Optimization to build optimal portfolios.")
+
+add_footer()

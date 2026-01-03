@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 import sys
 sys.path.append('..')
 
-from utils.styles import apply_custom_css
+from utils.styles import apply_custom_css, add_footer
 from utils.data_fetcher import fetch_multiple_stocks, get_available_tickers, calculate_returns
 
 apply_custom_css()
@@ -404,3 +404,5 @@ else:  # Riskfolio-Lib
 
 st.markdown("---")
 st.markdown("**Next step:** Check out Resources to learn more about quantitative finance.")
+
+add_footer()

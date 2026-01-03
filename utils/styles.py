@@ -179,3 +179,17 @@ def info_box(message: str, box_type: str = "info") -> None:
         box_type: One of "info", "success", "error"
     """
     st.markdown(f'<div class="{box_type}-box">{message}</div>', unsafe_allow_html=True)
+
+
+def add_footer() -> None:
+    """Add a consistent footer watermark to all pages."""
+    st.markdown("---")
+    st.markdown("""
+    <div style='text-align: center; color: #888; padding: 1rem 0;'>
+        <p style='margin: 0.25rem 0;'>Made by <strong>Vedanth Ramanathan</strong></p>
+        <p style='margin: 0.25rem 0; font-size: 0.85rem;'>
+            <a href="https://vedanthr5.github.io/vr-quantfolio-intro/">Documentation</a> · 
+            <a href="https://github.com/vedanthr5/vr-quantfolio-intro">GitHub</a>
+        </p>
+    </div>
+    """, unsafe_allow_html=True)

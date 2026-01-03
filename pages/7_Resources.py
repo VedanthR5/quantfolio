@@ -8,7 +8,7 @@ import streamlit as st
 import sys
 sys.path.append('..')
 
-from utils.styles import apply_custom_css
+from utils.styles import apply_custom_css, add_footer
 
 apply_custom_css()
 
@@ -216,10 +216,6 @@ quantitative finance with Python.
 - Plotly (Visualization)
 
 **License:** MIT
+""")
 
----
-
-<div style='text-align: center; color: #888;'>
-    <p>Built by Vedanth Ramanathan</p>
-</div>
-""", unsafe_allow_html=True)
+add_footer()

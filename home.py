@@ -24,7 +24,7 @@ st.set_page_config(
 )
 
 # Import shared styles
-from utils.styles import apply_custom_css
+from utils.styles import apply_custom_css, add_footer
 apply_custom_css()
 
 # =============================================================================
@@ -121,11 +121,4 @@ with st.expander("Quick Start Guide", expanded=False):
     """)
 
 # Footer
-st.markdown("---")
-st.markdown("""
-<div style='text-align: center; color: #888;'>
-    <p>Built with Streamlit, PyCaret, and Riskfolio-Lib</p>
-    <p><a href="https://vedanthr5.github.io/vr-quantfolio-intro/">Documentation</a> | 
-    <a href="https://github.com/vedanthr5/vr-quantfolio-intro">GitHub</a></p>
-</div>
-""", unsafe_allow_html=True)
+add_footer()
