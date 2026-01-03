@@ -115,7 +115,7 @@ fig.update_layout(
     template='plotly_white',
     height=400
 )
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width='stretch')
 
 st.markdown("---")
 
@@ -147,7 +147,7 @@ st.dataframe(metrics_df.style.format({
     'Expected Return': '{:.2%}',
     'Volatility': '{:.2%}',
     'Sharpe Ratio': '{:.2f}'
-}), use_container_width=True)
+}), width='stretch')
 
 # Correlation matrix
 st.markdown("**Correlation Matrix**")
@@ -162,7 +162,7 @@ fig = px.imshow(
     zmin=-1, zmax=1
 )
 fig.update_layout(height=400)
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width='stretch')
 
 st.markdown("---")
 
@@ -221,7 +221,7 @@ if optimization_method == "Manual Weights":
         names=list(weights.keys()),
         title="Portfolio Allocation"
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
 
 elif optimization_method == "Mean-Variance Optimization":
     st.markdown("**Efficient Frontier Simulation**")
@@ -308,7 +308,7 @@ elif optimization_method == "Mean-Variance Optimization":
                 height=500
             )
             
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
             
             # Show optimal weights
             st.markdown("**Optimal Portfolio Weights (Max Sharpe):**")
@@ -318,7 +318,7 @@ elif optimization_method == "Mean-Variance Optimization":
                 'Weight': optimal_weights
             })
             weights_df['Weight'] = weights_df['Weight'].apply(lambda x: f"{x:.2%}")
-            st.dataframe(weights_df, use_container_width=True)
+            st.dataframe(weights_df, width='stretch')
             
             col1, col2, col3 = st.columns(3)
             with col1:
@@ -362,7 +362,7 @@ else:  # Riskfolio-Lib
                 st.markdown("**Optimal Weights:**")
                 weights_df = w.round(4)
                 weights_df.columns = ['Weight']
-                st.dataframe(weights_df.style.format({'Weight': '{:.2%}'}), use_container_width=True)
+                st.dataframe(weights_df.style.format({'Weight': '{:.2%}'}), width='stretch')
                 
                 # Pie chart
                 fig = px.pie(
@@ -370,7 +370,7 @@ else:  # Riskfolio-Lib
                     names=w.index,
                     title=f"Optimal Portfolio ({objective})"
                 )
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, width='stretch')
                 
                 # Plot efficient frontier
                 st.markdown("**Efficient Frontier:**")
@@ -391,7 +391,7 @@ else:  # Riskfolio-Lib
                     yaxis_title='Return',
                     template='plotly_white'
                 )
-                st.plotly_chart(fig2, use_container_width=True)
+                st.plotly_chart(fig2, width='stretch')
         
         except ImportError:
             st.error("Riskfolio-Lib is not installed. Please install it with: `pip install riskfolio-lib`")

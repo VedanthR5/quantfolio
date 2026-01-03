@@ -118,7 +118,7 @@ if st.button("Prepare Features", type="secondary"):
         st.success(f"Prepared {len(df_ml)} samples with {len(df_ml.columns)} features")
         
         # Show feature preview
-        st.dataframe(df_ml.head(), use_container_width=True)
+        st.dataframe(df_ml.head(), width='stretch')
 
 
 def calculate_rsi(prices, period=14):
@@ -153,7 +153,7 @@ else:
             n_select = st.slider("Top Models to Compare", 3, 15, 5)
             session_id = st.number_input("Random Seed", value=123, step=1)
     
-    if st.button("Start AutoML Training", type="primary", use_container_width=True):
+    if st.button("Start AutoML Training", type="primary", width='stretch'):
         try:
             from pycaret.regression import setup, compare_models, pull, plot_model
             
@@ -185,7 +185,7 @@ else:
                 
                 # Display results
                 st.subheader("Model Comparison Results")
-                st.dataframe(results, use_container_width=True)
+                st.dataframe(results, width='stretch')
                 
                 # Store best model
                 if isinstance(best_models, list):

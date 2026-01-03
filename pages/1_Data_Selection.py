@@ -108,7 +108,7 @@ st.markdown("---")
 # FETCH DATA
 # =============================================================================
 
-if st.button("Fetch Stock Data", type="primary", use_container_width=True):
+if st.button("Fetch Stock Data", type="primary", width='stretch'):
     with st.spinner(f"Fetching data for {ticker}..."):
         df = fetch_stock_data(
             ticker=ticker,
@@ -148,14 +148,14 @@ if st.button("Fetch Stock Data", type="primary", use_container_width=True):
             tab1, tab2 = st.tabs(["Latest Data", "Statistics"])
             
             with tab1:
-                st.dataframe(df.tail(10), use_container_width=True)
+                st.dataframe(df.tail(10), width='stretch')
             
             with tab2:
-                st.dataframe(df.describe(), use_container_width=True)
+                st.dataframe(df.describe(), width='stretch')
             
             # Quick chart
             st.subheader("Price Overview")
-            st.line_chart(df['Close'], use_container_width=True)
+            st.line_chart(df['Close'], width='stretch')
             
         else:
             st.error(f"Could not fetch data for {ticker}. Please check the ticker symbol.")

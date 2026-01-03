@@ -105,7 +105,7 @@ if viz_type == "Price Chart with Moving Averages":
         height=500
     )
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
     
     # Generate signals
     df_viz['Signal'] = np.where(df_viz['Fast_MA'] > df_viz['Slow_MA'], 1, -1)
@@ -149,7 +149,7 @@ elif viz_type == "Candlestick Chart":
         height=500
     )
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
 
 # =============================================================================
 # VOLUME ANALYSIS
@@ -186,7 +186,7 @@ elif viz_type == "Volume Analysis":
         showlegend=False
     )
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
     
     # Volume statistics
     col1, col2, col3 = st.columns(3)
@@ -224,7 +224,7 @@ elif viz_type == "Returns Distribution":
         height=400
     )
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
     
     # Return statistics
     col1, col2, col3, col4 = st.columns(4)
@@ -271,7 +271,7 @@ elif viz_type == "Lag Plot Analysis":
         height=500
     )
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
     
     st.info(f"**Correlation Coefficient: {correlation:.4f}** - "
             f"{'Strong' if abs(correlation) > 0.8 else 'Moderate' if abs(correlation) > 0.5 else 'Weak'} "
@@ -317,7 +317,7 @@ elif viz_type == "Rolling Statistics":
         height=600
     )
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
 
 # =============================================================================
 # NAVIGATION

@@ -57,7 +57,7 @@ with col3:
 # Display training results if available
 if 'automl_results' in st.session_state:
     with st.expander("View Training Results", expanded=False):
-        st.dataframe(st.session_state['automl_results'], use_container_width=True)
+        st.dataframe(st.session_state['automl_results'], width='stretch')
 
 st.markdown("---")
 
@@ -78,7 +78,7 @@ with col1:
 
 with col2:
     st.markdown("<br>", unsafe_allow_html=True)
-    export_button = st.button("Export Model", type="primary", use_container_width=True)
+    export_button = st.button("Export Model", type="primary", width='stretch')
 
 if export_button:
     try:
@@ -124,7 +124,7 @@ if prediction_method == "Use Current Data":
         
         # Show last few rows for prediction
         st.markdown("**Latest data for prediction:**")
-        st.dataframe(df_predict.tail(5), use_container_width=True)
+        st.dataframe(df_predict.tail(5), width='stretch')
         
         if st.button("Generate Predictions", type="secondary"):
             try:
@@ -145,7 +145,7 @@ if prediction_method == "Use Current Data":
                     results_df.columns = ['Current Close', 'Actual Future', 'Predicted Future']
                     results_df['Error (%)'] = abs(results_df['Actual Future'] - results_df['Predicted Future']) / results_df['Actual Future'] * 100
                     
-                    st.dataframe(results_df.round(2), use_container_width=True)
+                    st.dataframe(results_df.round(2), width='stretch')
                     
                     # Metrics
                     col1, col2 = st.columns(2)
@@ -172,7 +172,7 @@ else:
         try:
             new_data = pd.read_csv(uploaded_file)
             st.markdown("**Uploaded data preview:**")
-            st.dataframe(new_data.head(), use_container_width=True)
+            st.dataframe(new_data.head(), width='stretch')
             
             if st.button("Generate Predictions", type="secondary"):
                 from pycaret.regression import predict_model
@@ -180,7 +180,7 @@ else:
                 with st.spinner("Generating predictions..."):
                     predictions = predict_model(model, data=new_data)
                     st.success("Predictions generated!")
-                    st.dataframe(predictions, use_container_width=True)
+                    st.dataframe(predictions, width='stretch')
                     
                     # Download button
                     csv = predictions.to_csv(index=False)

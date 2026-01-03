@@ -119,7 +119,7 @@ fig = go.Figure()
 fig.add_trace(go.Scatter(x=train_data.index, y=train_data['Close'], name='Training', line=dict(color='#1E88E5')))
 fig.add_trace(go.Scatter(x=test_data.index, y=test_data['Close'], name='Test', line=dict(color='#4ECDC4')))
 fig.update_layout(title=f'{ticker} Train/Test Split', xaxis_title='Date', yaxis_title='Price ($)', template='plotly_white')
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width='stretch')
 
 # ADF Test
 if st.button("Run Stationarity Test (ADF)"):
@@ -253,7 +253,7 @@ if model_type == "ARIMA (Classical)":
                     height=500
                 )
                 
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, width='stretch')
                 
                 # Store results
                 st.session_state['arima_predictions'] = reverse_pred
@@ -307,13 +307,13 @@ else:  # NeuralProphet
                     height=500
                 )
                 
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, width='stretch')
                 
                 # Show forecast table
                 st.subheader("Forecast Values")
                 forecast_display = forecast[['ds', 'yhat1']].tail(forecast_days)
                 forecast_display.columns = ['Date', 'Predicted Price']
-                st.dataframe(forecast_display, use_container_width=True)
+                st.dataframe(forecast_display, width='stretch')
         
         except ImportError:
             st.error("NeuralProphet is not installed. Please install it with: `pip install neuralprophet`")
