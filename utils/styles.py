@@ -4,6 +4,7 @@ Shared CSS styling for VR Quantfolio Intro
 Unified styling across all pages of the multipage Streamlit app.
 """
 
+from typing import Optional
 import streamlit as st
 
 

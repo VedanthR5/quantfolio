@@ -22,7 +22,7 @@ apply_custom_css()
 # PAGE HEADER
 # =============================================================================
 
-st.title("💼 Portfolio Optimization")
+st.title("Portfolio Optimization")
 st.markdown("Build optimal portfolios using mean-variance optimization (Markowitz).")
 
 st.markdown("---")
@@ -31,7 +31,7 @@ st.markdown("---")
 # PORTFOLIO SELECTION
 # =============================================================================
 
-st.subheader("1️⃣ Select Portfolio Assets")
+st.subheader("Step 1: Select Portfolio Assets")
 
 tickers_dict = get_available_tickers()
 
@@ -80,22 +80,22 @@ with col2:
     )
 
 if len(selected_tickers) < 2:
-    st.warning("⚠️ Please select at least 2 stocks for portfolio optimization.")
+    st.warning("Please select at least 2 stocks for portfolio optimization.")
     st.stop()
 
 # Fetch data
-if st.button("📥 Load Portfolio Data", type="secondary"):
+if st.button("Load Portfolio Data", type="secondary"):
     with st.spinner(f"Loading data for {len(selected_tickers)} stocks..."):
         prices = fetch_multiple_stocks(selected_tickers, str(start_date), str(end_date))
         if prices is not None:
             st.session_state['portfolio_prices'] = prices
             st.session_state['portfolio_tickers'] = selected_tickers
-            st.success(f"✅ Loaded {len(prices)} trading days for {len(selected_tickers)} stocks")
+            st.success(f"Loaded {len(prices)} trading days for {len(selected_tickers)} stocks")
         else:
             st.error("Failed to load data")
 
 if 'portfolio_prices' not in st.session_state:
-    st.info("👆 Click 'Load Portfolio Data' to fetch stock data")
+    st.info("Click 'Load Portfolio Data' to fetch stock data.")
     st.stop()
 
 prices = st.session_state['portfolio_prices']
@@ -123,7 +123,7 @@ st.markdown("---")
 # PORTFOLIO ANALYSIS
 # =============================================================================
 
-st.subheader("2️⃣ Portfolio Analysis")
+st.subheader("Step 2: Portfolio Analysis")
 
 # Calculate returns
 returns = calculate_returns(prices, "daily")
@@ -170,7 +170,7 @@ st.markdown("---")
 # PORTFOLIO OPTIMIZATION
 # =============================================================================
 
-st.subheader("3️⃣ Portfolio Optimization")
+st.subheader("Step 3: Portfolio Optimization")
 
 optimization_method = st.radio(
     "Optimization Method",
@@ -228,7 +228,7 @@ elif optimization_method == "Mean-Variance Optimization":
     
     num_portfolios = st.slider("Number of Random Portfolios", 1000, 10000, 5000)
     
-    if st.button("🚀 Generate Efficient Frontier", type="primary"):
+    if st.button("Generate Efficient Frontier", type="primary"):
         with st.spinner("Simulating portfolios..."):
             n_assets = len(tickers)
             
@@ -260,7 +260,7 @@ elif optimization_method == "Mean-Variance Optimization":
             max_sharpe_idx = sharpe_ratios.argmax()
             min_vol_idx = port_vols.argmin()
             
-            st.success("✅ Efficient frontier generated!")
+            st.success("Efficient frontier generated!")
             
             # Plot
             fig = go.Figure()
@@ -336,7 +336,7 @@ else:  # Riskfolio-Lib
         options=["Max Sharpe Ratio", "Min Volatility", "Max Return", "Risk Parity"]
     )
     
-    if st.button("🚀 Optimize with Riskfolio", type="primary"):
+    if st.button("Optimize with Riskfolio", type="primary"):
         try:
             import riskfolio as rp
             
@@ -356,7 +356,7 @@ else:  # Riskfolio-Lib
                 else:  # Risk Parity
                     w = port.rp_optimization(model='Classic', rm='MV')
                 
-                st.success("✅ Portfolio optimized!")
+                st.success("Portfolio optimized!")
                 
                 # Display weights
                 st.markdown("**Optimal Weights:**")
@@ -394,13 +394,13 @@ else:  # Riskfolio-Lib
                 st.plotly_chart(fig2, use_container_width=True)
         
         except ImportError:
-            st.error("❌ Riskfolio-Lib is not installed. Please install it with: `pip install riskfolio-lib`")
+            st.error("Riskfolio-Lib is not installed. Please install it with: `pip install riskfolio-lib`")
         except Exception as e:
-            st.error(f"❌ Error: {str(e)}")
+            st.error(f"Error: {str(e)}")
 
 # =============================================================================
 # NAVIGATION
 # =============================================================================
 
 st.markdown("---")
-st.markdown("**Next Step:** Go to [Resources](7_📚_Resources) to learn more about quantitative finance")
+st.markdown("**Next step:** Check out Resources to learn more about quantitative finance.")

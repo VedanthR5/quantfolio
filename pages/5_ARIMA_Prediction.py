@@ -23,8 +23,8 @@ apply_custom_css()
 # PAGE HEADER
 # =============================================================================
 
-st.title("🔮 ARIMA Price Prediction")
-st.markdown("Forecast stock prices using time series models (ARIMA & NeuralProphet).")
+st.title("ARIMA Price Prediction")
+st.markdown("Forecast stock prices using time series models (ARIMA and NeuralProphet).")
 
 st.markdown("---")
 
@@ -32,7 +32,7 @@ st.markdown("---")
 # DATA SELECTION
 # =============================================================================
 
-st.subheader("1️⃣ Select Stock Data")
+st.subheader("Step 1: Select Stock Data")
 
 col1, col2, col3 = st.columns(3)
 
@@ -57,13 +57,13 @@ with col3:
     )
 
 # Fetch data
-if st.button("📥 Load Data", type="secondary"):
+if st.button("Load Data", type="secondary"):
     with st.spinner(f"Loading {ticker} data..."):
         df = fetch_stock_data(ticker, str(start_date), str(end_date))
         if df is not None:
             st.session_state['arima_data'] = df
             st.session_state['arima_ticker'] = ticker
-            st.success(f"✅ Loaded {len(df)} trading days")
+            st.success(f"Loaded {len(df)} trading days")
         else:
             st.error("Failed to load data")
 
@@ -75,7 +75,7 @@ if 'arima_data' not in st.session_state:
         st.session_state['arima_ticker'] = st.session_state.get('automl_ticker', 'AAPL')
         st.info(f"Using data from AutoML: {st.session_state['arima_ticker']}")
     else:
-        st.info("👆 Click 'Load Data' to fetch stock data")
+        st.info("Click 'Load Data' to fetch stock data.")
         st.stop()
 
 df = st.session_state['arima_data']
@@ -87,7 +87,7 @@ st.markdown("---")
 # STATIONARITY ANALYSIS
 # =============================================================================
 
-st.subheader("2️⃣ Stationarity Analysis")
+st.subheader("Step 2: Stationarity Analysis")
 
 with st.expander("Understanding Stationarity", expanded=False):
     st.markdown("""
@@ -122,7 +122,7 @@ fig.update_layout(title=f'{ticker} Train/Test Split', xaxis_title='Date', yaxis_
 st.plotly_chart(fig, use_container_width=True)
 
 # ADF Test
-if st.button("🧪 Run Stationarity Test (ADF)"):
+if st.button("Run Stationarity Test (ADF)"):
     from statsmodels.tsa.stattools import adfuller
     
     train_series = train_data['Close']
@@ -139,7 +139,7 @@ if st.button("🧪 Run Stationarity Test (ADF)"):
         st.metric("P-Value", f"{adf_result[1]:.6f}")
     with col3:
         is_stationary = adf_result[1] < 0.05
-        st.metric("Stationary?", "Yes ✅" if is_stationary else "No ❌")
+        st.metric("Stationary?", "Yes" if is_stationary else "No")
     
     if not is_stationary:
         st.warning("Data is non-stationary. Applying differencing...")
@@ -155,7 +155,7 @@ if st.button("🧪 Run Stationarity Test (ADF)"):
         with col2:
             st.metric("P-Value", f"{adf_diff[1]:.10f}")
         with col3:
-            st.metric("Stationary?", "Yes ✅" if adf_diff[1] < 0.05 else "No ❌")
+            st.metric("Stationary?", "Yes" if adf_diff[1] < 0.05 else "No")
 
 st.markdown("---")
 
@@ -163,7 +163,7 @@ st.markdown("---")
 # MODEL TRAINING
 # =============================================================================
 
-st.subheader("3️⃣ Train Forecasting Model")
+st.subheader("Step 3: Train Forecasting Model")
 
 model_type = st.radio(
     "Select Model",
@@ -180,7 +180,7 @@ if model_type == "ARIMA (Classical)":
     with col3:
         q = st.number_input("q (MA order)", 0, 10, 0)
     
-    if st.button("🚀 Train ARIMA Model", type="primary"):
+    if st.button("Train ARIMA Model", type="primary"):
         try:
             from statsmodels.tsa.arima.model import ARIMA
             from sklearn.metrics import mean_squared_error
@@ -231,7 +231,7 @@ if model_type == "ARIMA (Classical)":
                 denominator = (np.abs(reverse_pred) + np.abs(reverse_test)) + 1e-8
                 smape = np.mean(np.abs(reverse_pred - reverse_test) * 200 / denominator)
                 
-                st.success("✅ ARIMA model trained!")
+                st.success("ARIMA model trained!")
                 
                 col1, col2 = st.columns(2)
                 with col1:
@@ -260,7 +260,7 @@ if model_type == "ARIMA (Classical)":
                 st.session_state['arima_actual'] = reverse_test
         
         except Exception as e:
-            st.error(f"❌ Error training model: {str(e)}")
+            st.error(f"Error training ARIMA model: {str(e)}")
 
 else:  # NeuralProphet
     col1, col2 = st.columns(2)
@@ -269,7 +269,7 @@ else:  # NeuralProphet
     with col2:
         ar_order = st.slider("Autoregression Order", 1, 30, 7)
     
-    if st.button("🚀 Train NeuralProphet Model", type="primary"):
+    if st.button("Train NeuralProphet Model", type="primary"):
         try:
             from neuralprophet import NeuralProphet
             
@@ -292,7 +292,7 @@ else:  # NeuralProphet
                 future = model.make_future_dataframe(df_prophet, periods=forecast_days)
                 forecast = model.predict(future)
                 
-                st.success("✅ NeuralProphet model trained!")
+                st.success("NeuralProphet model trained!")
                 
                 # Plot forecast
                 fig = go.Figure()
@@ -316,13 +316,13 @@ else:  # NeuralProphet
                 st.dataframe(forecast_display, use_container_width=True)
         
         except ImportError:
-            st.error("❌ NeuralProphet is not installed. Please install it with: `pip install neuralprophet`")
+            st.error("NeuralProphet is not installed. Please install it with: `pip install neuralprophet`")
         except Exception as e:
-            st.error(f"❌ Error training model: {str(e)}")
+            st.error(f"Error training model: {str(e)}")
 
 # =============================================================================
 # NAVIGATION
 # =============================================================================
 
 st.markdown("---")
-st.markdown("**Next Step:** Go to [Portfolio Optimization](6_💼_Portfolio_Optimization) to build optimal portfolios")
+st.markdown("**Next step:** Head to Portfolio Optimization to build optimal portfolios.")

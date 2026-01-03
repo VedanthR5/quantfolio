@@ -5,7 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
-
+.github/
 # Distribution / packaging
 .Python
 build/
@@ -120,3 +120,5 @@ models/
 # Quarto
 /.quarto/
 _freeze/
+
+**/*.quarto_ipynb

@@ -18,7 +18,7 @@ apply_custom_css()
 # PAGE HEADER
 # =============================================================================
 
-st.title("🤖 AutoML Model Training")
+st.title("AutoML Model Training")
 st.markdown("Use PyCaret to automatically find the best model for stock prediction.")
 
 st.markdown("---")
@@ -28,20 +28,20 @@ st.markdown("---")
 # =============================================================================
 
 if 'automl_data' not in st.session_state or st.session_state['automl_data'] is None:
-    st.warning("⚠️ No data loaded. Please go to **Data Selection** first.")
-    st.page_link("pages/1_📊_Data_Selection.py", label="Go to Data Selection", icon="📊")
+    st.warning("No data loaded. Please go to Data Selection first.")
+    st.page_link("pages/1_Data_Selection.py", label="Go to Data Selection")
     st.stop()
 
 df = st.session_state['automl_data'].copy()
 ticker = st.session_state.get('automl_ticker', 'Stock')
 
-st.info(f"📌 Training on: **{ticker}** | {len(df)} trading days")
+st.info(f"Training on: **{ticker}** | {len(df)} trading days")
 
 # =============================================================================
 # FEATURE ENGINEERING
 # =============================================================================
 
-st.subheader("1️⃣ Feature Engineering")
+st.subheader("Step 1: Feature Engineering")
 
 with st.expander("Configure Features", expanded=True):
     col1, col2 = st.columns(2)
@@ -77,7 +77,7 @@ with st.expander("Configure Features", expanded=True):
 # PREPARE DATA
 # =============================================================================
 
-if st.button("🔧 Prepare Features", type="secondary"):
+if st.button("Prepare Features", type="secondary"):
     with st.spinner("Engineering features..."):
         df_ml = df.copy()
         
@@ -115,7 +115,7 @@ if st.button("🔧 Prepare Features", type="secondary"):
         st.session_state['automl_target'] = 'Target'
         st.session_state['automl_forecast_horizon'] = forecast_horizon
         
-        st.success(f"✅ Prepared {len(df_ml)} samples with {len(df_ml.columns)} features")
+        st.success(f"Prepared {len(df_ml)} samples with {len(df_ml.columns)} features")
         
         # Show feature preview
         st.dataframe(df_ml.head(), use_container_width=True)
@@ -135,10 +135,10 @@ def calculate_rsi(prices, period=14):
 # =============================================================================
 
 st.markdown("---")
-st.subheader("2️⃣ Model Training")
+st.subheader("Step 2: Model Training")
 
 if 'automl_prepared_data' not in st.session_state:
-    st.info("👆 Please prepare features first before training.")
+    st.info("Please prepare features first before training.")
 else:
     df_ml = st.session_state['automl_prepared_data']
     
@@ -153,7 +153,7 @@ else:
             n_select = st.slider("Top Models to Compare", 3, 15, 5)
             session_id = st.number_input("Random Seed", value=123, step=1)
     
-    if st.button("🚀 Start AutoML Training", type="primary", use_container_width=True):
+    if st.button("Start AutoML Training", type="primary", use_container_width=True):
         try:
             from pycaret.regression import setup, compare_models, pull, plot_model
             
@@ -172,7 +172,7 @@ else:
                     html=False
                 )
                 
-                st.success("✅ PyCaret environment configured")
+                st.success("PyCaret environment configured")
             
             with st.spinner("Comparing models... This may take a few minutes."):
                 # Compare models
@@ -181,7 +181,7 @@ else:
                 # Get comparison results
                 results = pull()
                 
-                st.success("✅ Model comparison complete!")
+                st.success("Model comparison complete!")
                 
                 # Display results
                 st.subheader("Model Comparison Results")
@@ -196,7 +196,7 @@ else:
                 st.session_state['automl_best_model'] = best_model
                 st.session_state['automl_results'] = results
                 
-                st.success(f"🏆 Best Model: **{type(best_model).__name__}**")
+                st.success(f"Best Model: **{type(best_model).__name__}**")
             
             # Model plots
             st.subheader("Model Analysis")
@@ -225,9 +225,9 @@ else:
                     st.info("Feature importance plot not available for this model type.")
         
         except ImportError:
-            st.error("❌ PyCaret is not installed. Please install it with: `pip install pycaret`")
+            st.error("PyCaret is not installed. Please install it with: `pip install pycaret`")
         except Exception as e:
-            st.error(f"❌ Error during training: {str(e)}")
+            st.error(f"Error during training: {str(e)}")
 
 # =============================================================================
 # NAVIGATION
@@ -236,6 +236,6 @@ else:
 st.markdown("---")
 
 if 'automl_best_model' in st.session_state:
-    st.markdown("**Next Step:** Go to [Export Model](4_💾_Export_Model) to save your trained model")
+    st.markdown("**Next step:** Head to Export Model to save your trained model.")
 else:
     st.markdown("Train a model to proceed to the export step.")

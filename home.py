@@ -13,7 +13,7 @@ import streamlit as st
 # Page configuration - ONLY set this in the main entry point
 st.set_page_config(
     page_title="VR Quantfolio Intro",
-    page_icon="📈",
+    page_icon="chart_with_upwards_trend",
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
@@ -31,21 +31,22 @@ apply_custom_css()
 # MAIN HOME PAGE CONTENT
 # =============================================================================
 
-st.title("📈 VR Quantfolio Intro")
-st.markdown("### A Quantitative Finance Learning & Analysis Platform")
+st.title("VR Quantfolio Intro")
+st.markdown("#### A hands-on platform for learning quantitative finance with Python")
 
 st.markdown("---")
 
 # Welcome section
 st.markdown("""
-Welcome to **VR Quantfolio Intro** - an interactive platform for learning and applying 
-quantitative finance techniques using Python and machine learning.
+This application walks you through the core building blocks of quantitative finance—from 
+fetching and visualizing stock data, to training predictive models and constructing 
+optimized portfolios.
 
-This application combines:
-- 🤖 **AutoML Stock Analysis** - Automated machine learning for stock prediction
-- 🔮 **Time Series Forecasting** - ARIMA and NeuralProphet models
-- 💼 **Portfolio Optimization** - Mean-variance optimization with efficient frontier
-- 📊 **Interactive Visualizations** - Explore stock data with Plotly charts
+**What you can do here:**
+- Analyze historical stock prices with interactive charts
+- Train machine learning models using automated model selection (PyCaret)
+- Forecast prices with ARIMA and NeuralProphet
+- Build portfolios using mean-variance optimization
 """)
 
 st.markdown("---")
@@ -54,78 +55,77 @@ st.markdown("---")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.markdown("### 🤖 AutoML Stock Analysis")
+    st.markdown("### AutoML Stock Analysis")
     st.markdown("""
-    Use PyCaret's automated machine learning to:
-    - Compare 15+ regression models automatically
-    - Find the best model for stock price prediction
-    - Visualize feature importance and residuals
-    - Export trained models for production use
+    PyCaret's automated machine learning pipeline lets you:
+    - Compare 15+ regression models in one click
+    - Identify the best model for predicting stock prices
+    - Inspect feature importance and prediction errors
+    - Export trained models for later use
     """)
-    st.page_link("pages/1_📊_Data_Selection.py", label="Start with Data Selection →", icon="📊")
+    st.page_link("pages/1_Data_Selection.py", label="Start with Data Selection")
 
 with col2:
-    st.markdown("### 🔮 Price Prediction & Forecasting")
+    st.markdown("### Time Series Forecasting")
     st.markdown("""
-    Leverage time series models to:
-    - Forecast future stock prices with NeuralProphet
-    - Understand ARIMA methodology step-by-step
-    - Analyze autocorrelation and stationarity
-    - Evaluate prediction accuracy with SMAPE
+    Explore classical and deep learning approaches:
+    - Forecast prices using ARIMA with walk-forward validation
+    - Try NeuralProphet for trend and seasonality modeling
+    - Test for stationarity with the ADF test
+    - Evaluate accuracy with MSE and SMAPE
     """)
-    st.page_link("pages/5_🔮_ARIMA_Prediction.py", label="Try Price Prediction →", icon="🔮")
+    st.page_link("pages/5_ARIMA_Prediction.py", label="Try Price Prediction")
 
 st.markdown("---")
 
 col3, col4 = st.columns(2)
 
 with col3:
-    st.markdown("### 💼 Portfolio Optimization")
+    st.markdown("### Portfolio Optimization")
     st.markdown("""
-    Build optimal portfolios using:
-    - Mean-variance optimization (Markowitz)
-    - Efficient frontier visualization
-    - Sharpe ratio maximization
-    - Risk-return analysis with QuantStats
+    Construct portfolios that balance risk and return:
+    - Visualize the efficient frontier
+    - Maximize Sharpe ratio or minimize volatility
+    - Explore risk parity and advanced methods via Riskfolio-Lib
+    - Analyze asset correlations
     """)
-    st.page_link("pages/6_💼_Portfolio_Optimization.py", label="Optimize Portfolio →", icon="💼")
+    st.page_link("pages/6_Portfolio_Optimization.py", label="Optimize Portfolio")
 
 with col4:
-    st.markdown("### 📚 Learning Resources")
+    st.markdown("### Learning Resources")
     st.markdown("""
-    Explore the methodology:
-    - Interactive Jupyter notebooks
-    - Step-by-step ARIMA walkthrough
-    - Rendered tutorials on GitHub Pages
-    - Code examples and documentation
+    Dive deeper into the methodology:
+    - Jupyter notebooks with step-by-step explanations
+    - ARIMA fundamentals tutorial
+    - Links to documentation for all libraries used
     """)
-    st.page_link("pages/7_📚_Resources.py", label="View Resources →", icon="📚")
+    st.page_link("pages/7_Resources.py", label="View Resources")
 
 st.markdown("---")
 
 # Quick start guide
-with st.expander("🚀 Quick Start Guide", expanded=False):
+with st.expander("Quick Start Guide", expanded=False):
     st.markdown("""
     ### Getting Started
     
-    1. **Select a Stock**: Navigate to Data Selection and choose a ticker symbol
-    2. **Explore Data**: Use the Visualization page to understand price patterns
-    3. **Train Models**: Let AutoML find the best prediction model
-    4. **Forecast Prices**: Use ARIMA/NeuralProphet for future predictions
-    5. **Optimize Portfolio**: Build a multi-asset optimized portfolio
+    1. **Select a Stock** — Head to Data Selection and pick a ticker symbol
+    2. **Explore the Data** — Use the Visualization page to see price patterns
+    3. **Train Models** — Let AutoML compare models and find the best one
+    4. **Forecast Prices** — Use ARIMA or NeuralProphet for future predictions
+    5. **Optimize a Portfolio** — Combine multiple assets and find the optimal allocation
     
     ### Navigation
     
-    Use the **sidebar** on the left to navigate between pages. Each page is self-contained
-    but shares data through session state for a seamless workflow.
+    Use the sidebar on the left to move between pages. Each page is self-contained, 
+    but they share data through session state so your selections carry forward.
     """)
 
 # Footer
 st.markdown("---")
 st.markdown("""
 <div style='text-align: center; color: #888;'>
-    <p>Built with ❤️ using Streamlit, PyCaret, and Riskfolio-Lib</p>
-    <p>📖 <a href="https://vedanthr5.github.io/vr-quantfolio-intro/">View Documentation</a> | 
-    🐙 <a href="https://github.com/vedanthr5/vr-quantfolio-intro">GitHub Repository</a></p>
+    <p>Built with Streamlit, PyCaret, and Riskfolio-Lib</p>
+    <p><a href="https://vedanthr5.github.io/vr-quantfolio-intro/">Documentation</a> | 
+    <a href="https://github.com/vedanthr5/vr-quantfolio-intro">GitHub</a></p>
 </div>
 """, unsafe_allow_html=True)

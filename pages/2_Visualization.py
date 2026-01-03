@@ -21,7 +21,7 @@ apply_custom_css()
 # PAGE HEADER
 # =============================================================================
 
-st.title("📈 Data Visualization")
+st.title("Data Visualization")
 st.markdown("Explore stock price patterns with interactive charts.")
 
 st.markdown("---")
@@ -31,14 +31,14 @@ st.markdown("---")
 # =============================================================================
 
 if 'automl_data' not in st.session_state or st.session_state['automl_data'] is None:
-    st.warning("⚠️ No data loaded. Please go to **Data Selection** first.")
-    st.page_link("pages/1_📊_Data_Selection.py", label="Go to Data Selection", icon="📊")
+    st.warning("No data loaded. Please go to Data Selection first.")
+    st.page_link("pages/1_Data_Selection.py", label="Go to Data Selection")
     st.stop()
 
 df = st.session_state['automl_data']
 ticker = st.session_state.get('automl_ticker', 'Stock')
 
-st.info(f"📌 Analyzing: **{ticker}** | {len(df)} trading days")
+st.info(f"Analyzing: **{ticker}** | {len(df)} trading days")
 
 # =============================================================================
 # VISUALIZATION OPTIONS
@@ -47,12 +47,12 @@ st.info(f"📌 Analyzing: **{ticker}** | {len(df)} trading days")
 viz_type = st.selectbox(
     "Select Visualization",
     options=[
-        "📈 Price Chart with Moving Averages",
-        "🕯️ Candlestick Chart",
-        "📊 Volume Analysis",
-        "🔄 Returns Distribution",
-        "📉 Lag Plot Analysis",
-        "📐 Rolling Statistics"
+        "Price Chart with Moving Averages",
+        "Candlestick Chart",
+        "Volume Analysis",
+        "Returns Distribution",
+        "Lag Plot Analysis",
+        "Rolling Statistics"
     ]
 )
 
@@ -62,7 +62,7 @@ st.markdown("---")
 # PRICE CHART WITH MOVING AVERAGES
 # =============================================================================
 
-if viz_type == "📈 Price Chart with Moving Averages":
+if viz_type == "Price Chart with Moving Averages":
     st.subheader("Price Chart with Moving Averages")
     
     col1, col2 = st.columns(2)
@@ -124,7 +124,7 @@ if viz_type == "📈 Price Chart with Moving Averages":
 # CANDLESTICK CHART
 # =============================================================================
 
-elif viz_type == "🕯️ Candlestick Chart":
+elif viz_type == "Candlestick Chart":
     st.subheader("Candlestick Chart")
     
     # Date range slider
@@ -155,7 +155,7 @@ elif viz_type == "🕯️ Candlestick Chart":
 # VOLUME ANALYSIS
 # =============================================================================
 
-elif viz_type == "📊 Volume Analysis":
+elif viz_type == "Volume Analysis":
     st.subheader("Volume Analysis")
     
     fig = make_subplots(
@@ -201,7 +201,7 @@ elif viz_type == "📊 Volume Analysis":
 # RETURNS DISTRIBUTION
 # =============================================================================
 
-elif viz_type == "🔄 Returns Distribution":
+elif viz_type == "Returns Distribution":
     st.subheader("Returns Distribution Analysis")
     
     returns = df['Close'].pct_change().dropna()
@@ -241,7 +241,7 @@ elif viz_type == "🔄 Returns Distribution":
 # LAG PLOT ANALYSIS
 # =============================================================================
 
-elif viz_type == "📉 Lag Plot Analysis":
+elif viz_type == "Lag Plot Analysis":
     st.subheader("Lag Plot Analysis")
     
     lag = st.slider("Lag Period (days)", 1, 30, 1)
@@ -281,7 +281,7 @@ elif viz_type == "📉 Lag Plot Analysis":
 # ROLLING STATISTICS
 # =============================================================================
 
-elif viz_type == "📐 Rolling Statistics":
+elif viz_type == "Rolling Statistics":
     st.subheader("Rolling Statistics")
     
     window = st.slider("Rolling Window (days)", 5, 60, 14)
@@ -324,4 +324,4 @@ elif viz_type == "📐 Rolling Statistics":
 # =============================================================================
 
 st.markdown("---")
-st.markdown("**Next Step:** Go to [AutoML Training](3_🤖_AutoML_Training) to train prediction models")
+st.markdown("**Next step:** Head to AutoML Training to train prediction models.")

@@ -1,20 +1,20 @@
-# 🚀 VR Quantfolio Intro
+# VR Quantfolio Intro
 
 > Interactive Quantitative Finance Toolkit with Python
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://vr-quantfolio.streamlit.app)
 [![GitHub Pages](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://vedanthr5.github.io/vr-quantfolio-intro)
 
-## 📊 Overview
+## Overview
 
 This project provides an interactive web application for exploring quantitative finance concepts, including:
 
-- **📈 Stock Data Analysis**: Fetch and visualize historical stock data
-- **🤖 AutoML Stock Prediction**: Train ML models using PyCaret
-- **🔮 Time Series Forecasting**: ARIMA and NeuralProphet implementations
-- **💼 Portfolio Optimization**: Efficient frontier and risk-adjusted returns
+- **Stock Data Analysis**: Fetch and visualize historical stock data
+- **AutoML Stock Prediction**: Train ML models using PyCaret
+- **Time Series Forecasting**: ARIMA and NeuralProphet implementations
+- **Portfolio Optimization**: Efficient frontier and risk-adjusted returns
 
-## 🎯 Features
+## Features
 
 ### Streamlit App
 
@@ -29,7 +29,7 @@ This project provides an interactive web application for exploring quantitative 
 - **ARIMA Fundamentals**: Step-by-step time series forecasting guide
 - Detailed explanations of stationarity, differencing, and cumsum reversal
 
-## 🛠️ Installation
+## Installation
 
 ### Prerequisites
 
@@ -51,12 +51,12 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## 🚀 Running the App
+## Running the App
 
 ### Streamlit App
 
 ```bash
-streamlit run 🏠_Home.py
+streamlit run home.py
 ```
 
 Then open http://localhost:8501 in your browser.
@@ -79,13 +79,13 @@ vr-quantfolio-intro/
 │   └── config.toml           # Streamlit theme configuration
 │
 ├── pages/                     # Streamlit multipage app
-│   ├── 1_📊_Data_Selection.py
-│   ├── 2_📈_Visualization.py
-│   ├── 3_🤖_AutoML_Training.py
-│   ├── 4_💾_Export_Model.py
-│   ├── 5_🔮_ARIMA_Prediction.py
-│   ├── 6_💼_Portfolio_Optimization.py
-│   └── 7_📚_Resources.py
+│   ├── 1_Data_Selection.py
+│   ├── 2_Visualization.py
+│   ├── 3_AutoML_Training.py
+│   ├── 4_Export_Model.py
+│   ├── 5_ARIMA_Prediction.py
+│   ├── 6_Portfolio_Optimization.py
+│   └── 7_Resources.py
 │
 ├── utils/                     # Shared utilities
 │   ├── __init__.py
@@ -99,7 +99,7 @@ vr-quantfolio-intro/
     └── index.html
 ```
 
-## 📚 Tutorials
+## Tutorials
 
 ### ARIMA Time Series Forecasting
 
@@ -112,7 +112,7 @@ The [arima_fundamentals.ipynb](tutorials/arima_fundamentals.ipynb) notebook cove
 5. Cumulative sum reversal
 6. Error metrics (MSE, SMAPE)
 
-## 🔧 Technologies
+## Technologies
 
 | Category          | Tools                      |
 | ----------------- | -------------------------- |
@@ -124,7 +124,7 @@ The [arima_fundamentals.ipynb](tutorials/arima_fundamentals.ipynb) notebook cove
 | **Visualization** | Plotly, matplotlib         |
 | **Documentation** | Quarto, GitHub Pages       |
 
-## 📈 Deployment
+## Deployment
 
 ### Streamlit Cloud
 
@@ -147,15 +147,15 @@ git commit -m "Update GitHub Pages"
 git push
 ```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions welcome! Please open an issue or PR.
 
-## 📄 License
+## License
 
 MIT License - see [LICENSE](LICENSE) file.
 
-## 👤 Author
+## Author
 
 **Vedanth R**
 
@@ -163,4 +163,4 @@ MIT License - see [LICENSE](LICENSE) file.
 
 ---
 
-⭐ Star this repo if you find it helpful!
+Star this repo if you find it helpful!

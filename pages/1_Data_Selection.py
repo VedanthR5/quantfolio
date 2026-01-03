@@ -6,7 +6,7 @@ Select stock ticker and date range for analysis.
 
 import streamlit as st
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 import sys
 sys.path.append('..')
 
@@ -24,8 +24,8 @@ apply_custom_css()
 # PAGE HEADER
 # =============================================================================
 
-st.title("📊 Data Selection")
-st.markdown("Select a stock and date range to begin your analysis.")
+st.title("Data Selection")
+st.markdown("Choose a stock and date range to begin your analysis.")
 
 st.markdown("---")
 
@@ -36,7 +36,7 @@ st.markdown("---")
 col1, col2 = st.columns([1, 2])
 
 with col1:
-    st.subheader("Select Stock")
+    st.subheader("Stock")
     
     # Category selection
     tickers_by_category = get_available_tickers()
@@ -64,7 +64,7 @@ with col1:
         ticker = custom_ticker.upper()
 
 with col2:
-    st.subheader("Select Date Range")
+    st.subheader("Date Range")
     
     # Preset date ranges
     preset = st.radio(
@@ -100,7 +100,7 @@ with col2:
             "End Date",
             value=end_date
         )
-        end_date = end_date_val if isinstance(end_date_val, datetime.date) else end_date
+        end_date = end_date_val if not isinstance(end_date_val, tuple) else end_date
 
 st.markdown("---")
 
@@ -108,7 +108,7 @@ st.markdown("---")
 # FETCH DATA
 # =============================================================================
 
-if st.button("🔍 Fetch Stock Data", type="primary", use_container_width=True):
+if st.button("Fetch Stock Data", type="primary", use_container_width=True):
     with st.spinner(f"Fetching data for {ticker}..."):
         df = fetch_stock_data(
             ticker=ticker,
@@ -123,7 +123,7 @@ if st.button("🔍 Fetch Stock Data", type="primary", use_container_width=True):
             st.session_state['automl_start_date'] = str(start_date)
             st.session_state['automl_end_date'] = str(end_date)
             
-            st.success(f"✅ Successfully loaded {len(df)} trading days of data for {ticker}")
+            st.success(f"Loaded {len(df)} trading days of data for {ticker}")
             
             # Display stock info
             info = get_stock_info(ticker)
@@ -145,7 +145,7 @@ if st.button("🔍 Fetch Stock Data", type="primary", use_container_width=True):
             # Preview data
             st.subheader("Data Preview")
             
-            tab1, tab2 = st.tabs(["📋 Latest Data", "📊 Statistics"])
+            tab1, tab2 = st.tabs(["Latest Data", "Statistics"])
             
             with tab1:
                 st.dataframe(df.tail(10), use_container_width=True)
@@ -158,7 +158,7 @@ if st.button("🔍 Fetch Stock Data", type="primary", use_container_width=True):
             st.line_chart(df['Close'], use_container_width=True)
             
         else:
-            st.error(f"❌ Could not fetch data for {ticker}. Please check the ticker symbol.")
+            st.error(f"Could not fetch data for {ticker}. Please check the ticker symbol.")
 
 # =============================================================================
 # DISPLAY CURRENT DATA (if exists)
@@ -166,8 +166,8 @@ if st.button("🔍 Fetch Stock Data", type="primary", use_container_width=True):
 
 if 'automl_data' in st.session_state and st.session_state['automl_data'] is not None:
     st.markdown("---")
-    st.info(f"📌 Current dataset: **{st.session_state.get('automl_ticker', 'Unknown')}** | "
+    st.info(f"Current dataset: **{st.session_state.get('automl_ticker', 'Unknown')}** | "
             f"{len(st.session_state['automl_data'])} trading days | "
             f"{st.session_state.get('automl_start_date', '')} to {st.session_state.get('automl_end_date', '')}")
     
-    st.markdown("**Next Step:** Go to [Visualization](2_📈_Visualization) to explore the data")
+    st.markdown("**Next step:** Head to Visualization to explore the data.")

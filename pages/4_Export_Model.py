@@ -19,7 +19,7 @@ apply_custom_css()
 # PAGE HEADER
 # =============================================================================
 
-st.title("💾 Export Model")
+st.title("Export Model")
 st.markdown("Save your trained model and make predictions on new data.")
 
 st.markdown("---")
@@ -29,21 +29,21 @@ st.markdown("---")
 # =============================================================================
 
 if 'automl_best_model' not in st.session_state:
-    st.warning("⚠️ No trained model found. Please go to **AutoML Training** first.")
-    st.page_link("pages/3_🤖_AutoML_Training.py", label="Go to AutoML Training", icon="🤖")
+    st.warning("No trained model found. Please go to AutoML Training first.")
+    st.page_link("pages/3_AutoML_Training.py", label="Go to AutoML Training")
     st.stop()
 
 model = st.session_state['automl_best_model']
 ticker = st.session_state.get('automl_ticker', 'Stock')
 forecast_horizon = st.session_state.get('automl_forecast_horizon', 1)
 
-st.success(f"✅ Model loaded: **{type(model).__name__}** for {ticker}")
+st.success(f"Model loaded: **{type(model).__name__}** for {ticker}")
 
 # =============================================================================
 # MODEL SUMMARY
 # =============================================================================
 
-st.subheader("📋 Model Summary")
+st.subheader("Model Summary")
 
 col1, col2, col3 = st.columns(3)
 
@@ -65,7 +65,7 @@ st.markdown("---")
 # EXPORT MODEL
 # =============================================================================
 
-st.subheader("💾 Save Model")
+st.subheader("Save Model")
 
 col1, col2 = st.columns([2, 1])
 
@@ -78,7 +78,7 @@ with col1:
 
 with col2:
     st.markdown("<br>", unsafe_allow_html=True)
-    export_button = st.button("📥 Export Model", type="primary", use_container_width=True)
+    export_button = st.button("Export Model", type="primary", use_container_width=True)
 
 if export_button:
     try:
@@ -86,7 +86,7 @@ if export_button:
         
         with st.spinner("Saving model..."):
             save_model(model, model_name)
-            st.success(f"✅ Model saved as `{model_name}.pkl`")
+            st.success(f"Model saved as `{model_name}.pkl`")
             
             # Provide download info
             st.info(f"""
@@ -100,9 +100,9 @@ if export_button:
             """)
     
     except ImportError:
-        st.error("❌ PyCaret is not installed. Please install it with: `pip install pycaret`")
+        st.error("PyCaret is not installed. Please install it with: `pip install pycaret`")
     except Exception as e:
-        st.error(f"❌ Error saving model: {str(e)}")
+        st.error(f"Error saving model: {str(e)}")
 
 st.markdown("---")
 
@@ -110,7 +110,7 @@ st.markdown("---")
 # MAKE PREDICTIONS
 # =============================================================================
 
-st.subheader("🔮 Make Predictions")
+st.subheader("Make Predictions")
 
 prediction_method = st.radio(
     "Prediction Method",
@@ -126,14 +126,14 @@ if prediction_method == "Use Current Data":
         st.markdown("**Latest data for prediction:**")
         st.dataframe(df_predict.tail(5), use_container_width=True)
         
-        if st.button("🎯 Generate Predictions", type="secondary"):
+        if st.button("Generate Predictions", type="secondary"):
             try:
                 from pycaret.regression import predict_model
                 
                 with st.spinner("Generating predictions..."):
                     predictions = predict_model(model, data=df_predict)
                     
-                    st.success("✅ Predictions generated!")
+                    st.success("Predictions generated!")
                     
                     # Display predictions
                     pred_col = 'prediction_label' if 'prediction_label' in predictions.columns else predictions.columns[-1]
@@ -157,7 +157,7 @@ if prediction_method == "Use Current Data":
                         st.metric("Latest Prediction", f"${latest_pred:.2f}")
             
             except Exception as e:
-                st.error(f"❌ Error generating predictions: {str(e)}")
+                st.error(f"Error generating predictions: {str(e)}")
     else:
         st.warning("No prepared data available. Please go back to AutoML Training.")
 
@@ -174,25 +174,25 @@ else:
             st.markdown("**Uploaded data preview:**")
             st.dataframe(new_data.head(), use_container_width=True)
             
-            if st.button("🎯 Generate Predictions", type="secondary"):
+            if st.button("Generate Predictions", type="secondary"):
                 from pycaret.regression import predict_model
                 
                 with st.spinner("Generating predictions..."):
                     predictions = predict_model(model, data=new_data)
-                    st.success("✅ Predictions generated!")
+                    st.success("Predictions generated!")
                     st.dataframe(predictions, use_container_width=True)
                     
                     # Download button
                     csv = predictions.to_csv(index=False)
                     st.download_button(
-                        label="📥 Download Predictions CSV",
+                        label="Download Predictions CSV",
                         data=csv,
                         file_name=f"{ticker}_predictions.csv",
                         mime="text/csv"
                     )
         
         except Exception as e:
-            st.error(f"❌ Error processing file: {str(e)}")
+            st.error(f"Error processing file: {str(e)}")
 
 # =============================================================================
 # NAVIGATION
@@ -200,7 +200,7 @@ else:
 
 st.markdown("---")
 st.markdown("""
-**Explore More:**
-- [ARIMA Prediction](5_🔮_ARIMA_Prediction) - Time series forecasting
-- [Portfolio Optimization](6_💼_Portfolio_Optimization) - Build optimal portfolios
+**Explore more:**
+- ARIMA Prediction for time series forecasting
+- Portfolio Optimization to build optimal portfolios
 """)
